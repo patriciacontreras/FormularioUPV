@@ -144,9 +144,17 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // TipddyUPVBundle_homepage
-        if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]+?)$#s', $pathinfo, $matches)) {
-            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Tipddy\\UPVBundle\\Controller\\DefaultController::indexAction',)), array('_route' => 'TipddyUPVBundle_homepage'));
+        if (rtrim($pathinfo, '/') === '') {
+            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'HEAD'));
+                goto not_TipddyUPVBundle_homepage;
+            }
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'TipddyUPVBundle_homepage');
+            }
+            return array (  '_controller' => 'Tipddy\\UPVBundle\\Controller\\InscripcionController::indexAction',  '_route' => 'TipddyUPVBundle_homepage',);
         }
+        not_TipddyUPVBundle_homepage:
 
         if (0 === strpos($pathinfo, '/inscripcion')) {
             // inscripcion

@@ -72,9 +72,9 @@ class InscripcionController extends Controller
      */
     public function createAction()
     {
-        $entity  = new Inscripcion();
+        $entity = new Inscripcion();
         $request = $this->getRequest();
-        $form    = $this->createForm(new InscripcionType(), $entity);
+        $form = $this->createForm(new InscripcionType(), $entity);
         $form->bindRequest($request);
 
         if ($form->isValid()) {
@@ -88,9 +88,14 @@ class InscripcionController extends Controller
 
         return $this->render('TipddyUPVBundle:Inscripcion:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView()
+            'form' => $form->createView()
         ));
     }
+
+    /**
+* Displays a form to edit an existing Inscripcion entity.
+*
+*/
 
     /**
      * Displays a form to edit an existing Inscripcion entity.

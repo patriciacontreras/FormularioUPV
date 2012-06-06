@@ -3,6 +3,12 @@
 namespace Tipddy\UPVBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\MinLength;
+use Symfony\Component\Validator\Constraints\MaxLength;
+
 
 /**
  * Tipddy\UPVBundle\Entity\Inscripcion
@@ -21,6 +27,13 @@ class Inscripcion
      */
     private $id;
 
+    /**
+     * @var string $nombre
+     *
+     * @ORM\Column(name="nombre", type="string", length=20, nullable=true)
+     */
+    private $nombre;
+    
     /**
      * @var string $apellidos
      *
@@ -122,6 +135,26 @@ class Inscripcion
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set nombre
+     *
+     * @param string $nombre
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+    }
+
+    /**
+     * Get nombre
+     *
+     * @return string 
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
     }
 
     /**
@@ -383,4 +416,26 @@ class Inscripcion
     {
         return $this->gradoAcademico;
     }
+    
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('nombre', new NotBlank());
+
+        $metadata->addPropertyConstraint('emailPersonal', new Email());
+        
+        $metadata->addPropertyConstraint('emailIntitucional', new Email());
+
+        $metadata->addPropertyConstraint('apellidos', new NotBlank());
+        
+        $metadata->addPropertyConstraint('fonoMovil', new MaxLength(8));
+
+        $metadata->addPropertyConstraint('fonoFijo', new MaxLength(8));
+        
+        $metadata->addPropertyConstraint('sede', new NotBlank());
+        
+        $metadata->addPropertyConstraint('facultad', new NotBlank());
+        
+        $metadata->addPropertyConstraint('carrera', new NotBlank());
+    }
+
 }

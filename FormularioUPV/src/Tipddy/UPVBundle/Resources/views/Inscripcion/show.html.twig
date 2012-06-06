@@ -1,3 +1,5 @@
+{% extends 'TipddyUPVBundle::baselocal.html.twig' %}
+{% block body %}
 <h1>Inscripcion</h1>
 
 <table class="record_properties">
@@ -5,6 +7,10 @@
         <tr>
             <th>Id</th>
             <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Nombre</th>
+            <td>{{ entity.nombre }}</td>
         </tr>
         <tr>
             <th>Apellidos</th>
@@ -15,27 +21,27 @@
             <td>{{ entity.rut }}</td>
         </tr>
         <tr>
-            <th>Fechanacimiento</th>
-            <td>{{ entity.fechaNacimiento|date('Y-m-d H:i:s') }}</td>
+            <th>Fecha Nacimiento</th>
+            <td>{{ entity.fechaNacimiento |date('Y-m-d H:i:s') }}</td>
         </tr>
         <tr>
             <th>Sexo</th>
             <td>{{ entity.sexo }}</td>
         </tr>
         <tr>
-            <th>Emailpersonal</th>
+            <th>Email_Personal</th>
             <td>{{ entity.emailPersonal }}</td>
         </tr>
         <tr>
-            <th>Emailintitucional</th>
+            <th>Email_Intitucional</th>
             <td>{{ entity.emailIntitucional }}</td>
         </tr>
         <tr>
-            <th>Fonofijo</th>
+            <th>Fono_fijo</th>
             <td>{{ entity.fonoFijo }}</td>
         </tr>
         <tr>
-            <th>Fonomovil</th>
+            <th>Fono_movil</th>
             <td>{{ entity.fonoMovil }}</td>
         </tr>
         <tr>
@@ -51,11 +57,11 @@
             <td>{{ entity.carrera }}</td>
         </tr>
         <tr>
-            <th>Tituloprofesional</th>
+            <th>Titulo Profesional</th>
             <td>{{ entity.tituloProfesional }}</td>
         </tr>
         <tr>
-            <th>Gradoacademico</th>
+            <th>Grado Academico</th>
             <td>{{ entity.gradoAcademico }}</td>
         </tr>
     </tbody>
@@ -64,7 +70,7 @@
 <ul class="record_actions">
     <li>
         <a href="{{ path('inscripcion') }}">
-            Back to the list
+            Volver
         </a>
     </li>
     <li>
@@ -79,3 +85,4 @@
         </form>
     </li>
 </ul>
+{% endblock %}
